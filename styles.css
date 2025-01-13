@@ -178,17 +178,17 @@ header {
     background-color: #2E2E38;
     padding-left: 16px;
     padding-right: 16px;
-    height: 260px;
+    height: 235px;
     border-radius: 20px;
     border: 0.001px #606464 solid;
     width: 20%;
-    font-size: 22px;
+    font-size: 28px;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 40px;
+    padding-top: 25px;
     text-align: center;
     @media only screen and(max-width: 1200px) {
         padding-left: 10px;
@@ -356,7 +356,7 @@ input[type="search"] {
     justify-content: space-between;
     color: rgb(223, 225, 227);
     align-items: center;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .Temperature-container-round {
@@ -464,5 +464,5 @@ input[type="search"] {
 }
 
 .sunrisesunset {
-    font-size: 16px;
+    font-size: 20px;
 }
