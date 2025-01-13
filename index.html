@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Include JustGage CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justgage@1.3.1/justgage.css">
+    <!-- Include Raphael.js (dependency for JustGage) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/justgage@1.3.2/justgage.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <span id="date">DailyWeather</span>
+            <div class="input-container">
+                <div class="icon_search" style="padding-right: 20px;">
+                    <input id="input-search" placeholder="Search for a city or postcode" style="color:#c3bfbf ;font-size: 14px;">
+                    <i class="fa-solid fa-magnifying-glass" id="search-button" style="color: #c3bfbf;"></i>
+                </div>
+                <div id="converter">
+                    <div id="celsius" class="selected-unit">C°</div>
+                    <div id="farenheit" class="unselected-unit">F°</div>
+                </div>
+            </div>
+        </header>
+        <div class="first-sub-container">
+            <div class="other-details-container">
+                <div class="dyn-icon"></div>
+                <div id="Temperature-container" class="Temperature-container-round" style="order: 2;">
+                    <div id="temperature-round">fetching</div>
+                    <div id="temp-des">Temperature</div>
+                </div>
+            </div>
+
+            <div class="input-city-container">
+                <div class="input-first-row">
+                    <div id="dynamic-icon">
+                    </div>
+                    <div id="city-container">
+                        <div id="city">fetching</div>
+                        <div id="country">fetching</div>
+                    </div>
+                    <div id="Temperature-container">
+                        <div id="temperature">fetching</div>
+                        <div>Temperature</div>
+                    </div>
+                    <div id="Humidity-container">
+                        <div id="humidity">fetching</div>
+                        <div>Humidity</div>
+                    </div>
+                    <div id="Windspeed-container">
+                        <div id="windspeed">fetching</div>
+                        <div>Windspeed</div>
+                    </div>
+                    <div id="chance-of-rain-container">
+                        <div id="cor">fetching</div>
+                        <div>Chance of rain</div>
+                    </div>
+                </div>
+                <span style="padding-left: 50px;color:white">Today at</span>
+                <div class="input-second-row">
+                    <span id="06am" class="hourly-temp">
+                        <span class="time">6 AM</span>
+                    <span id="temp-6" class="temp" style="font-weight: 600;">20°C</span>
+                    </span>
+                    <span id="09am" class="hourly-temp">
+                        <span class="time">9 AM</span>
+                    <span id="temp-9" class="temp" style="font-weight: 600;">20°C</span>
+                    </span>
+                    <span id="12pm" class="hourly-temp">
+                        <span class="time">12 PM</span>
+                    <span id="temp-12" class="temp" style="font-weight: 600;">20°C</span>
+                    </span>
+                    <span id="03pm" class="hourly-temp">
+                        <span class="time">3 PM</span>
+                    <span id="temp-15" class="temp" style="font-weight: 600;">20°C</span>
+                    </span>
+                    <span id="06pm" class="hourly-temp">
+                        <span class="time">6 PM</span>
+                    <span id="temp-18" class="temp" style="font-weight: 600;">20°C</span>
+                    </span>
+                    <span id="09pm" class="hourly-temp">
+                        <span class="time">9 PM</span>
+                    <span id="temp-21" class="temp" style="font-weight: 600;">20°C</span>
+                    </span>
+                </div>
+            </div>
+            <div class="name-later-2">
+                <div class="uv-container">
+                    <span>UV index</span>
+                    <div id="uv" style="width: 120px; height: 80px; border-radius:50%;color:white;margin: 0px;"></div>
+                    <span id="uv-des" style="font-size: 16px;"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="second-sub-container">
+            <div class="name-later">
+                <div class="aqi-container">
+                    <span>Air quality</span>
+                    <span id="aqi" style="width: 170px; height: 150px; border-radius:50%;color:white;margin: 0px;"></span>
+                    <span id="aqi-des" style="font-size: 16px;"></span>
+                </div>
+
+            </div>
+            <div class="air-quality-container">
+                <div class="sunrisesunset">Sunrise & Sunset</div>
+                <div>
+                    <div class="sunrise-container">
+                        <img src="images/Sunrise3.png">
+                        <span id="sunrise"></span>
+                    </div>
+                    <div class="sunset-container">
+                        <img src="images/Sunset3.png">
+                        <span id="sunset"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="graph-wrapper" style="color: white;">
+                <div class="graph-header">
+                    <span id="temp-graph-button">Temperature</span>
+                    <span id="rain-graph-button">Rainfall</span>
+                    <span id="humidity-graph-button">Humidity</span>
+                </div>
+                <canvas class="temp-graph-container"></canvas>
+                <canvas class="rain-graph-container"></canvas>
+                <canvas class="humidity-graph-container"></canvas>
+            </div>
+            <div class="name-later-1"></div>
+        </div>
+        <div class="third-sub-container">
+            <span>Popular cities around you</span>
+            <div class="pop-cities">
+                <div class="dynamic-pop-city-icon-0">
+                    <div id="city-1-container" class="popular-city">
+                        <span id="city1">City1</span>
+                        <span id="city-temp-1" class="city-temps">Temp</span>
+                        <span id="city-des-1">des</span>
+                    </div>
+                </div>
+                <div class="dynamic-pop-city-icon-1">
+                    <div id="city-2-container" class="popular-city">
+                        <span id="city2">City1</span>
+                        <span id="city-temp-2" class="city-temps">Temp</span>
+                        <span id="city-des-2">des</span>
+                    </div>
+                </div>
+                <div class="dynamic-pop-city-icon-2">
+                    <div id="city-3-container" class="popular-city">
+                        <span id="city3">City1</span>
+                        <span id="city-temp-3" class="city-temps">Temp</span>
+                        <span id="city-des-3">des</span>
+                    </div>
+                </div>
+                <div class="dynamic-pop-city-icon-3">
+                    <div id="city-4-container" class="popular-city">
+                        <span id="city4">City1</span>
+                        <span id="city-temp-4" class="city-temps">Temp</span>
+                        <span id="city-des-4">des</span>
+                    </div>
+                </div>
+                <div class="dynamic-pop-city-icon-4">
+                    <div id="city-5-container" class="popular-city">
+                        <span id="city5">City1</span>
+                        <span id="city-temp-5" class="city-temps">Temp</span>
+                        <span id="city-des-5">des</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
